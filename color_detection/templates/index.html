@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+	{% load static %}
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+
+		<title>Color detection</title>
+	</head>
+	<body>
+		<div class="container mt-5">
+			<div class="row mx-1">
+				<div class="col-12 border p-4">
+					<div class="img-wrap border-bottom">
+						<img src="" alt="image" />
+						<h3 class="tip-text">Select a image to detection</h3>
+					</div>
+					<input type="file" name="upload-image" accept="image/*" />
+
+					<button
+						type="button"
+						class="btn btn-primary mt-4 w-100"
+						onclick="handleClick()"
+					>
+						Upload Image
+					</button>
+				</div>
+
+				<div class="col-12 mt-4 text-center">
+					<h2>Color is: <strong class="color">red</strong></h2>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap Bundle with Popper -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous"
+		></script>
+
+		<!-- jQuery -->
+		<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"
+		></script>
+
+		<script>
+			// 处理显示状态
+			function processingDisplay(haveImage) {
+				const image = $('input[name="upload-image"]')[0].files[0];
+				const imageTag = $('img')[0];
+				const tipText = $('.tip-text')[0];
+				const color = $('.color')[0];
+
+				if (image) {
+					$(imageTag).show();
+					$(tipText).hide();
+					$(color).text('Loading...');
+				} else {
+					$(imageTag).hide();
+					$(tipText).show();
+					$(color).text('Not detected');
+				}
+			}
+
+			// 初始化 显示状态
+			$(function () {
+				processingDisplay();
+			});
+
+			// btn 回调
+			function handleClick() {
+				const input = $('input[name="upload-image"]')[0];
+				input.click();
+			}
+
+			// 文件选择 回调
+			$('input[name="upload-image"]').change(function (e) {
+				let image = e.target.files[0];
+
+				if (image) {
+					$('img').attr('src', URL.createObjectURL(image));
+				}
+				processingDisplay();
+			});
+
+			// 图片 点击回调
+			$('img').click(function (e) {
+				let image = $('input[name="upload-image"]')[0].files[0];
+				let formData = new FormData();
+				formData.append('image', image);
+				formData.append('pos_x', e.offsetX);
+				formData.append('pos_y', e.offsetY);
+				formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+				$.ajax({
+					type: 'POST',
+					data: formData,
+					processData: false,
+					contentType: false,
+					cache: false,
+					enctype: 'multipart/form-data',
+					success: function ({ color_name, r, g, b }) {
+						$('.color').text(`${color_name}, ${r}, ${g}, ${b}`);
+					},
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+input[name='upload-image'] {
+	display: none;
+}
+
+.img-wrap {
+	min-height: 320px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.img-wrap > img {
+	outline: 1px solid red;
+}
