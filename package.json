@@ -1,0 +1,25 @@
+{
+  "name": "itreview_web",
+  "private": false,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
+    "pinia": "^2.1.4",
+    "vue": "^3.3.4",
+    "vue-hooks-plus": "1.6.0"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@types/node": "^18.16.19",
+    "nuxt": "^3.6.2",
+    "nuxt-icon": "^0.4.2",
+    "nuxt-lodash": "^2.5.0",
+    "sass": "^1.63.6"
+  }
+}
