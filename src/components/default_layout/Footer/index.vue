@@ -6,55 +6,55 @@
 
         <ul class="list">
           <li class="item">
-            <IconPhone />
+            <IconPhone class="itisit-icon" />
             <span class="value">+7(771)-452-65-55</span>
           </li>
           <li class="item">
-            <IconMail />
-            <span class="value">plastic-world@gmail.com</span>
+            <IconMail class="itisit-icon" />
+            <span class="value">toktaryernar@gmail.com</span>
           </li>
           <li class="item">
-            <IconAddress />
-            <span class="value">
-              501 West Broadway, Suite 800, San Diego, CA 92101
-            </span>
+            <IconAddress class="itisit-icon" />
+            <span class="value"> ҚР, Астана қаласы </span>
           </li>
         </ul>
       </div>
 
       <div class="col">
-        <h6 class="title">Ссылки</h6>
+        <!-- <h6 class="title">Ссылки</h6>
 
         <ul class="list">
           <NuxtLink to="/" class="item">Главный</NuxtLink>
           <NuxtLink to="/products" class="item">Продукты</NuxtLink>
           <NuxtLink to="/faq" class="item">FAQ</NuxtLink>
           <NuxtLink to="/contact-us" class="item">Контакт</NuxtLink>
-        </ul>
+        </ul> -->
       </div>
 
       <div class="col">
-        <!-- <h6 class="title">Investment disclosure</h6> -->
         <h6 class="title">Краткое введение</h6>
 
         <p class="item">
-          <!-- When you invest with 《Plastic World》, you are more than a number,
-          you are a partner. As a partner with us, you can access opportunities
-          usually reserved only for the largest institutional investors. You can
-          access a team driven only by excellence and results. You can access
-          real estate investment opportunities designed with you in mind. -->
-          Добро пожаловать на наш веб-сайт. Мы сосредоточены на том, чтобы
-          предложить вам широкий выбор хорошо продуманной мебели, которая
-          наполнит ваше домашнее пространство индивидуальностью и теплотой. Мы
-          стремимся предоставлять качественные услуги, чтобы сделать ваши
-          покупки на дому приятными и приятными. Начните сегодня и найдите
-          идеальную мебель для своего дома!
+          Добро пожаловать на наш сайт! Это платформа, которая собирает
+          информацию от многих отечественных ИТ-компаний и предоставляет вам
+          оценки и баллы непосредственно от сотрудников. Информацию об условиях
+          работы, уровне комфорта и зарплатном пакете вы можете найти в разных
+          компаниях. В то же время вы также можете участвовать в тематических
+          обсуждениях и обмениваться опытом работы и мнениями в этих компаниях с
+          другими. Независимо от того, ищете ли вы работу или интересуетесь
+          ИТ-индустрией, здесь вы можете найти полезную информацию, которая
+          поможет вам принять решение о карьере!
         </p>
       </div>
     </div>
 
-    <!-- <h6 class="cr">Plastic World {{ currentYear }} @ All Right Reserved</h6> -->
-    <h6 class="cr">Хоз товары {{ currentYear }} @ Все права защищены</h6>
+    <div class="else">
+      <h6 class="supplier">
+        Разработано
+        <a href="https://itisit.netlify.app/" target="_blank">IT IS IT</a>
+      </h6>
+      <h6 class="cr">ITReview {{ currentYear }} @ Все права защищены</h6>
+    </div>
   </footer>
 </template>
 
@@ -70,12 +70,10 @@ const currentYear = new Date().getFullYear();
 @import "~/assets/style/mixins.scss";
 
 .footer {
-  --c-text: #fff;
-  --c-text-secondary: rgba(255, 255, 255, 0.72);
-
   padding-top: 72px;
   padding-bottom: 40px;
-  background: #161b1f;
+  border-top: 1px solid var(--c-background);
+  background: var(--c-background);
   @include flex($direction: column, $gap: 64px);
 
   .columns {
@@ -118,7 +116,6 @@ const currentYear = new Date().getFullYear();
 
       .title {
         color: var(--c-text);
-        font-family: "Poppins", sans-serif;
         font-size: 26px;
         font-weight: 700;
       }
@@ -130,19 +127,15 @@ const currentYear = new Date().getFullYear();
       .item {
         text-decoration: none;
         color: var(--c-text-secondary);
-        font-family: "Poppins", sans-serif;
       }
 
       &:first-child {
         .item {
           cursor: pointer;
-          color: rgba(255, 255, 255, 0.9);
           @include flex($alignItems: center, $gap: 12px);
 
           svg {
             flex-shrink: 0;
-            width: 24px;
-            height: 24px;
           }
 
           &:last-child {
@@ -159,18 +152,33 @@ const currentYear = new Date().getFullYear();
       &:last-child {
         grid-area: col3;
         .item {
-          font-family: "Inter", sans-serif;
           line-height: 34px;
         }
       }
     }
   }
 
-  .cr {
+  .else {
     width: 100%;
-    color: var(--c-text);
-    font-family: "Poppins", sans-serif;
-    text-align: center;
+    @include flex($justifyContent: space-between, $alignItems: center);
+
+    .cr,
+    .supplier {
+      color: var(--c-text-secondary);
+
+      a {
+        margin-left: 4px;
+        color: var(--c-primary);
+        letter-spacing: 2px;
+        text-decoration: none;
+      }
+    }
+
+    @media screen and (max-width: 576px) {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 8px;
+    }
   }
 }
 </style>
