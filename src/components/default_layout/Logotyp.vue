@@ -1,8 +1,7 @@
 <template>
   <div class="logotyp" @click="$router.push('/')">
     <img class="logo" src="~/assets/image/logo.png" alt="Logo" />
-    <!-- <span class="brand">Plastic World</span> -->
-    <span class="brand">Хоз товары</span>
+    <span class="brand">ITReview</span>
   </div>
 </template>
 
@@ -20,8 +19,6 @@
   }
 
   .brand {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
     font-size: 24px;
   }
 }

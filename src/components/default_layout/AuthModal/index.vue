@@ -97,7 +97,6 @@ const handleRegister = (values: any) => {
     margin-bottom: 32px;
 
     .ant-modal-title {
-      font-family: "Poppins", sans-serif;
       font-weight: 700;
     }
   }
