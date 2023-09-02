@@ -72,7 +72,7 @@ const currentYear = new Date().getFullYear();
 .footer {
   padding-top: 72px;
   padding-bottom: 40px;
-  border-top: 1px solid var(--c-background);
+  border-top: 1px solid var(--c-border);
   background: var(--c-background);
   @include flex($direction: column, $gap: 64px);
 
