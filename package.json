@@ -12,7 +12,8 @@
     "@pinia/nuxt": "^0.4.11",
     "pinia": "^2.1.4",
     "vue": "^3.3.4",
-    "vue-hooks-plus": "1.6.0"
+    "vue-hooks-plus": "1.6.0",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
