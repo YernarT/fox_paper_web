@@ -6,7 +6,7 @@
       <Button variant="primary" @click="modal.authModal.open = true">
         <span>Опубликовать обсуждение</span>
       </Button>
-      <Button v-if="!user.isAuthenticated" @click="modal.authModal.open = true">
+      <Button v-if="!user.isAuthenticated" @click="openRegisterModal">
         <span>Бесплатная регистрация</span>
       </Button>
 
@@ -14,9 +14,7 @@
         <span>Выйти</span>
       </Button>
 
-      <!-- <ClientOnly>
-        <AuthModal />
-      </ClientOnly> -->
+      <AuthModal />
     </nav>
   </header>
 </template>
@@ -36,7 +34,14 @@ const user = useUser();
 const route = useRoute();
 const modal = useGlobalModal();
 
-const linkIsActive = computed(() => (path: string) => path === route.path);
+const openRegisterModal = () => {
+  modal.$patch({
+    authModal: {
+      open: true,
+      modalType: 'Register'
+    }
+  })
+}
 </script>
 
 <style scoped lang="scss">
