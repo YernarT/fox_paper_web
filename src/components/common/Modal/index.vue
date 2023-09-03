@@ -99,6 +99,10 @@ watchEffect(() => {
         @include flex($justifyContent: space-between, $alignItems: center);
     }
 
+    &__body {
+        width: 100%;
+    }
+
     &__footer {
         width: 100%;
         @include flex($justifyContent: flex-end, $alignItems: center, $gap: 8px);
