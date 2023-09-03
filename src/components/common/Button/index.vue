@@ -18,7 +18,7 @@ interface I_ButtonProps {
 const props = defineProps<I_ButtonProps>();
 </script>
 
-<style scope lang="scss">
+<style scoped lang="scss">
 @import "~/assets/style/mixins.scss";
 
 .btn {
