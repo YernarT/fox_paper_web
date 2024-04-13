@@ -85,7 +85,7 @@
   }
 }
 
-@mixin maxRow($rowCount, $rowHeight) {
+@mixin maxRow($rowCount: 2, $rowHeight: 1.36) {
   overflow: hidden;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
@@ -95,20 +95,4 @@
   -webkit-line-clamp: $rowCount;
   line-height: $rowHeight;
   max-height: $rowCount * $rowHeight;
-}
-
-@mixin svgStyle(
-  $size: 24px,
-  $color: var(--c-primary),
-  $fill: $color,
-  $stroke: $color
-) {
-  fill: $fill;
-  color: $color;
-  width: $size;
-  height: $size;
-
-  path {
-    stroke: $stroke;
-  }
 }
