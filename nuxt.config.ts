@@ -2,25 +2,23 @@
 export default defineNuxtConfig({
   srcDir: "src/",
 
-  devtools: { enabled: false },
+  devtools: { enabled: true },
 
   devServer: {
     port: 3000,
   },
 
   css: [
+    // Global style, classes
     "~/assets/style/variables.css",
     "~/assets/style/reset.css",
-    // Global class
     "~/assets/style/itisit-container.css",
-    "~/assets/style/itisit-icon.css",
+    "~/assets/style/antd.css",
   ],
 
-  modules: ["nuxt-icon", "@pinia/nuxt", "nuxt-lodash"],
+  modules: ["@pinia/nuxt", "nuxt-icon", "nuxt-lodash"],
 
-  nitro: {
-    prerender: {
-      failOnError: false,
-    },
+  app: {
+    pageTransition: { name: "page", mode: "out-in" },
   },
 });
