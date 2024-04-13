@@ -3,7 +3,7 @@
     class="btn"
     :class="{ [`btn--${props.variant ?? 'outlined'}`]: true }"
   >
-    <slot />
+    <slot></slot>
   </button>
 </template>
 
@@ -16,6 +16,8 @@ interface I_ButtonProps {
 }
 
 const props = defineProps<I_ButtonProps>();
+
+defineOptions({ name: "Button" });
 </script>
 
 <style scoped lang="scss">

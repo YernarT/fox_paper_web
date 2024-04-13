@@ -1,9 +1,13 @@
 <template>
   <div class="logotyp" @click="$router.push('/')">
     <img class="logo" src="~/assets/image/logo.png" alt="Logo" />
-    <span class="brand">ITReview</span>
+    <span class="brand">Fox paper</span>
   </div>
 </template>
+
+<script setup lang="ts">
+defineOptions({ name: "Logotyp" });
+</script>
 
 <style scoped lang="scss">
 @import "~/assets/style/mixins.scss";
@@ -19,6 +23,7 @@
   }
 
   .brand {
+    font-weight: 700;
     font-size: 24px;
   }
 }

@@ -4,7 +4,7 @@
 
     <nav class="block">
       <Button variant="primary" @click="modal.authModal.open = true">
-        <span>Опубликовать обсуждение</span>
+        <span>Опубликовать статя</span>
       </Button>
       <Button v-if="!user.isAuthenticated" @click="openRegisterModal">
         <span>Бесплатная регистрация</span>
@@ -20,15 +20,15 @@
 </template>
 
 <script setup lang="ts">
-// Vue
-import { computed } from "vue";
 // Store
 import { useUser, defaultUserState } from "~/stores/user";
 import { useGlobalModal } from "~/stores/modal";
 // Component
-import Logotyp from "../Logotyp.vue";
-import AuthModal from "../AuthModal/index.vue";
+import Logotyp from "~/components/default_layout/Logotyp.vue";
+import AuthModal from "~/components/default_layout/AuthModal/index.vue";
 import Button from "~/components/common/Button/index.vue";
+
+defineOptions({ name: "Navbar" });
 
 const user = useUser();
 const route = useRoute();
@@ -38,10 +38,10 @@ const openRegisterModal = () => {
   modal.$patch({
     authModal: {
       open: true,
-      modalType: 'Register'
-    }
-  })
-}
+      modalType: "Register",
+    },
+  });
+};
 </script>
 
 <style scoped lang="scss">

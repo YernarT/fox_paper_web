@@ -29,6 +29,8 @@ import Button from '~/components/common/Button/index.vue';
 
 const emit = defineEmits(['ok', 'cancel', 'close']);
 
+defineOptions({name: 'Modal'});
+
 const props = defineProps({
     open: {
         type: Boolean,

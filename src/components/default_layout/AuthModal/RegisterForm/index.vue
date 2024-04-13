@@ -1,53 +1,49 @@
 <template>
-  <a-form
-    :model="formState"
-    class="form"
-    layout="vertical"
-    :colon="false"
-    @finish="handleSubmit"
-  >
-    <a-form-item
-      label="Имя пользователя"
-      name="username"
-      :rules="[
-        {
-          required: true,
-          message: 'Введите ваше имя пользователя',
-        },
-      ]"
-    >
-      <a-input v-model:value="formState.username" />
-    </a-form-item>
+  <form class="form" @submit.prevent="handleSubmit">
+    <div class="row">
+      <div class="icon">
+        <Icon name="mdi:account-plus" class="itisit-icon" />
+      </div>
 
-    <a-form-item
-      label="Пароль"
-      name="password"
-      :rules="[{ required: true, message: 'Введите ваше имя пароль' }]"
-    >
-      <a-input-password v-model:value="formState.password" />
-    </a-form-item>
+      <h3 class="title">Регистрация</h3>
 
-    <a-form-item>
-      <a-button block type="primary" html-type="submit"> Регистрация </a-button>
+      <div class="closer" @click="modal.authModal.open = false">
+        <Icon name="mdi:window-close" />
+      </div>
+    </div>
+
+    <div class="inputs">
+      <Input placeholder="Имя пользователя" />
+      <Input placeholder="Пароль" type="password" />
+    </div>
+
+    <div class="actions">
+      <Button type="submit" variant="primary">Регистрация</Button>
       <span>Или</span>
-      <a-button block @click="emit('change-form', 'login')">Вход</a-button>
-    </a-form-item>
-  </a-form>
+      <Button @click="modal.authModal.modalType = 'Login'">Вход</Button>
+    </div>
+  </form>
 </template>
 
 <script setup lang="ts">
 // Vue
 import { reactive } from "vue";
+// Component
+import Input from "~/components/common/Input/index.vue";
+import Button from "~/components/common/Button/index.vue";
+// Store
+import { useGlobalModal } from "~/stores/modal";
 
-const emit = defineEmits(["submit", "change-form"]);
+defineOptions({ name: "RegisterForm" });
 
+const modal = useGlobalModal();
 const formState = reactive({
   username: "",
   password: "",
 });
 
-const handleSubmit = (values: typeof formState) => {
-  emit("submit", values);
+const handleSubmit = () => {
+  console.log("register values: ", formState);
 };
 </script>
 
@@ -55,13 +51,47 @@ const handleSubmit = (values: typeof formState) => {
 @import "~/assets/style/mixins.scss";
 
 .form {
-  :deep(.ant-form-item):last-child {
-    width: 100%;
-    margin-top: 40px;
-    margin-bottom: 0;
+  @include flex($direction: column, $alignItems: center);
 
-    .ant-form-item-control-input-content {
-      @include flex($direction: column, $alignItems: center, $gap: 8px);
+  .row {
+    @include flex($alignItems: center, $gap: 12px);
+  }
+
+  .icon {
+    --size: 36px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(0, 120, 240, 0.1);
+    @include flexCenter;
+  }
+
+  .title {
+    font-weight: 500;
+    font-size: 20px;
+  }
+
+  .closer {
+    cursor: pointer;
+    @include positioned($top: 8px, $right: 8px);
+  }
+
+  .inputs {
+    width: 100%;
+    margin: 24px 0;
+    @include flex($direction: column, $gap: 20px);
+
+    .input-wrap {
+      width: 100%;
+    }
+  }
+
+  .actions {
+    width: 100%;
+    @include flex($direction: column, $alignItems: center, $gap: 8px);
+
+    button {
+      width: 100%;
     }
   }
 }

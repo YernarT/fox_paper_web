@@ -1,37 +1,26 @@
 <template>
   <footer class="itisit-container footer">
     <div class="columns">
-      <div class="col">
+      <div class="col-1">
         <h6 class="title">Контакт</h6>
 
         <ul class="list">
           <li class="item">
-            <IconPhone class="itisit-icon" />
+            <Icon name="material-symbols:call" />
             <span class="value">+7(771)-452-65-55</span>
           </li>
           <li class="item">
-            <IconMail class="itisit-icon" />
+            <Icon name="material-symbols:mail" />
             <span class="value">toktaryernar@gmail.com</span>
           </li>
           <li class="item">
-            <IconAddress class="itisit-icon" />
+            <Icon name="material-symbols:location-on-outline" />
             <span class="value"> ҚР, Астана қаласы </span>
           </li>
         </ul>
       </div>
 
-      <div class="col">
-        <!-- <h6 class="title">Ссылки</h6>
-
-        <ul class="list">
-          <NuxtLink to="/" class="item">Главный</NuxtLink>
-          <NuxtLink to="/products" class="item">Продукты</NuxtLink>
-          <NuxtLink to="/faq" class="item">FAQ</NuxtLink>
-          <NuxtLink to="/contact-us" class="item">Контакт</NuxtLink>
-        </ul> -->
-      </div>
-
-      <div class="col">
+      <div class="col-2">
         <h6 class="title">Краткое введение</h6>
 
         <p class="item">
@@ -53,17 +42,15 @@
         Разработано
         <a href="https://itisit.netlify.app/" target="_blank">IT IS IT</a>
       </h6>
-      <h6 class="cr">ITReview {{ currentYear }} @ Все права защищены</h6>
+      <h6 class="cr">Fox paper {{ currentYear }} @ Все права защищены</h6>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-import IconPhone from "~/assets/icons/phone.vue";
-import IconMail from "~/assets/icons/mail.vue";
-import IconAddress from "~/assets/icons/address.vue";
-
 const currentYear = new Date().getFullYear();
+
+defineOptions({ name: "TheFooter" });
 </script>
 
 <style scoped lang="scss">
@@ -79,40 +66,17 @@ const currentYear = new Date().getFullYear();
   .columns {
     @include flex($gap: 72px);
 
-    @media screen and (max-width: 1180px) {
-      display: grid;
-      grid-template-areas:
-        "col1 col2"
-        "col3 .";
-    }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 786px) {
       @include flex($direction: column, $gap: 32px);
     }
 
-    .col {
+    [class^="col"] {
       list-style: none;
       @include flex(
         $direction: column,
         $justifyContent: space-between,
         $gap: 24px
       );
-
-      &:first-child {
-        flex: 1 0 280px;
-        grid-area: col1;
-
-        @media screen and (max-width: 600px) {
-          flex-basis: auto;
-        }
-      }
-
-      &:nth-child(2) {
-        flex-shrink: 0;
-        grid-area: col2;
-        .item {
-          white-space: nowrap;
-        }
-      }
 
       .title {
         color: var(--c-text);
@@ -121,39 +85,31 @@ const currentYear = new Date().getFullYear();
       }
 
       .list {
+        list-style: none;
         @include flex($direction: column, $gap: 20px);
+
+        .item {
+          text-decoration: none;
+          color: var(--c-text-secondary);
+        }
+      }
+    }
+
+    .col-1 {
+      flex: 1 0 280px;
+      @media screen and (max-width: 786px) {
+        flex-basis: auto;
       }
 
       .item {
-        text-decoration: none;
-        color: var(--c-text-secondary);
+        cursor: pointer;
+        @include flex($alignItems: center, $gap: 12px);
       }
+    }
 
-      &:first-child {
-        .item {
-          cursor: pointer;
-          @include flex($alignItems: center, $gap: 12px);
-
-          svg {
-            flex-shrink: 0;
-          }
-
-          &:last-child {
-            gap: 0;
-
-            svg {
-              width: 38px;
-              height: 38px;
-            }
-          }
-        }
-      }
-
-      &:last-child {
-        grid-area: col3;
-        .item {
-          line-height: 34px;
-        }
+    .col-2 {
+      .item {
+        line-height: 32px;
       }
     }
   }
@@ -169,7 +125,7 @@ const currentYear = new Date().getFullYear();
       a {
         margin-left: 4px;
         color: var(--c-primary);
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         text-decoration: none;
       }
     }
