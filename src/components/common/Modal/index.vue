@@ -86,14 +86,16 @@ watchEffect(() => {
     background: #fff;
     box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 
+    opacity: 0;
     transform-origin: left bottom;
-    transform: translate(-50%, -100%) scale(0);
-    transition: transform var(--transition);
+    transform: translate(-50%, calc(-100% + 16px));
+    transition: opacity var(--transition), transform var(--transition);
     @include positioned($position: fixed, $top: 50%, $left: 50%, $zIndex: var(--zIndex));
     @include flex($direction: column, $gap: 16px);
 
     &--open {
-        transform: translate(-50%, -100%) scale(1);
+        opacity: 1;
+        transform: translate(-50%, -100%);
     }
 
     &__head {
