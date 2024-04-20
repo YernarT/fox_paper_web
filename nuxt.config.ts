@@ -8,6 +8,15 @@ export default defineNuxtConfig({
     port: 3000,
   },
 
+  vite: {
+    vue: {
+      script: {
+        defineModel: true,
+        propsDestructure: true,
+      },
+    },
+  },
+
   css: [
     // Global style, classes
     "~/assets/style/variables.css",
