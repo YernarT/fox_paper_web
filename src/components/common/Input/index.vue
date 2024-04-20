@@ -1,7 +1,7 @@
 <template>
   <div class="input-wrap">
     <Icon v-if="prefixIcon" :name="prefixIcon" />
-    <input :type="type" :placeholder="placeholder" />
+    <input v-model="model" :type="type" :placeholder="placeholder" />
     <Icon v-if="affixIcon" :name="affixIcon" />
   </div>
 </template>
@@ -11,6 +11,8 @@
 import { toRefs } from "vue";
 
 defineOptions({ name: "Input" });
+
+const model = defineModel<string>("value");
 
 const props = defineProps({
   prefixIcon: {
