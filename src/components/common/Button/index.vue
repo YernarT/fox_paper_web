@@ -1,7 +1,10 @@
 <template>
   <button
     class="btn"
-    :class="{ [`btn--${props.variant ?? 'outlined'}`]: true }"
+    :class="{
+      'btn--icon': props.icon,
+      [`btn--${props.variant ?? 'outlined'}`]: true,
+    }"
   >
     <slot></slot>
   </button>
@@ -12,6 +15,7 @@
 type T_ButtonVariants = "primary" | "outlined" | "ghot";
 
 interface I_ButtonProps {
+  icon?: boolean;
   variant?: T_ButtonVariants;
 }
 
@@ -40,6 +44,11 @@ defineOptions({ name: "Button" });
   &--ghot {
     border-color: transparent;
     background: transparent;
+  }
+
+  &--icon {
+    padding: 4px;
+    @include flexCenter;
   }
 
   &:active {
