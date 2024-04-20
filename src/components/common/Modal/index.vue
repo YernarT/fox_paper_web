@@ -107,6 +107,7 @@ watchEffect(() => {
 
   opacity: 0;
   transform-origin: left bottom;
+  pointer-events: none;
   transform: translate(-50%, calc(-100% + 16px));
   transition: opacity var(--transition), transform var(--transition);
   @include positioned(
@@ -119,6 +120,7 @@ watchEffect(() => {
 
   &--open {
     opacity: 1;
+    pointer-events: auto;
     transform: translate(-50%, -100%);
   }
 
