@@ -3,6 +3,10 @@
     <Modal
       without-header
       without-footer
+      :class="{
+        'login-form-modal': modal.authModal.modalType === 'Login',
+        'register-form-modal': modal.authModal.modalType === 'Register',
+      }"
       :open="modal.authModal.open"
       @close="modal.authModal.open = false"
     >
@@ -13,18 +17,8 @@
 </template>
 
 <script setup lang="ts">
-// Types
-import type { I_User } from "types/user";
-
-// Vue
-import { ref, computed } from "vue";
 // Store
 import { useGlobalModal } from "~/stores/modal";
-import { useUser } from "~/stores/user";
-// Hooks
-import { useRequest } from "vue-hooks-plus";
-// API
-import { API_Login, API_Register } from "~/service/api/user-api";
 // Component
 import LoginForm from "./LoginForm/index.vue";
 import RegisterForm from "./RegisterForm/index.vue";
@@ -32,7 +26,6 @@ import Modal from "~/components/common/Modal/index.vue";
 
 defineOptions({ name: "AuthModal" });
 
-const userStore = useUser();
 const modal = useGlobalModal();
 
 // const { runAsync: login, loading: loadingLogin } = useRequest(API_Login, {

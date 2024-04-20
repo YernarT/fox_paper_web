@@ -58,5 +58,10 @@ const openRegisterModal = () => {
     margin-left: auto;
     @include flex($alignItems: center, $gap: 24px);
   }
+
+  :deep(.login-form-modal),
+  :deep(.register-form-modal) {
+    top: 70%;
+  }
 }
 </style>
