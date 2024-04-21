@@ -1,14 +1,18 @@
 <template>
-  <div class="search" :class="{ 'search--focused': isFocused }">
-    <Input
-      v-model:value="searchText"
-      placeholder="Пойск"
-      @blur="isFocused = false"
-      @focus="isFocused = true"
-    />
-    <Button icon variant="primary" @click="emit('search', searchText)">
-      <Icon name="material-symbols:search" />
-    </Button>
+  <div class="search-wrap">
+    <Statistic />
+
+    <div class="search" :class="{ 'search--focused': isFocused }">
+      <Input
+        v-model:value="searchText"
+        placeholder="Пойск"
+        @blur="isFocused = false"
+        @focus="isFocused = true"
+      />
+      <Button icon variant="primary" @click="emit('search', searchText)">
+        <Icon name="material-symbols:search" />
+      </Button>
+    </div>
   </div>
 </template>
 
@@ -19,6 +23,7 @@ import { ref } from "vue";
 // Components
 import Input from "~/components/common/Input/index.vue";
 import Button from "~/components/common/Button/index.vue";
+import Statistic from "~/components/index_page/Statistic.vue";
 
 defineOptions({ name: "Search" });
 
@@ -32,6 +37,10 @@ const searchText = ref("");
 
 <style scoped lang="scss">
 @import "~/assets/style/mixins.scss";
+
+.search-wrap {
+  @include flex($direction: column, $alignItems: center, $gap: 8px);
+}
 
 .search {
   width: 560px;
@@ -49,6 +58,7 @@ const searchText = ref("");
     height: 50px;
     padding: 2px 0 2px 8px;
     border: 1px solid var(--c-border);
+    border-right: none;
 
     input {
       font-size: 20px;
