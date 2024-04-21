@@ -16,9 +16,9 @@ defineOptions({ name: "DefaultLayout" });
 <style scoped>
 .default-layout {
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.25) 1px, transparent 0px) 0% 0% /
+  background: linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 0px) 0% 0% /
       36px 36px,
-    linear-gradient(90deg, rgba(0, 0, 0, 0.25) 1px, transparent 0px) 0% 0% /
-      36px 36px;
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 0px) 0% 0% / 36px
+      36px;
 }
 </style>
