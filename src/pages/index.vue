@@ -22,7 +22,7 @@ const onSearch = (searchText: string) => {
   padding-bottom: 40px;
   @include flex($direction: column);
 
-  .search {
+  .search-wrap {
     align-self: center;
   }
 }
