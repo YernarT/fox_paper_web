@@ -76,12 +76,14 @@ export class ItIsFetch {
     config.headers = { ...this.headers, ...(config?.headers ?? {}) };
     config.responseType = config?.responseType ?? "json";
 
-    if (config.body instanceof FormData) {
-      delete config.headers["Content-Type"];
-    }
-
     for (const handler of this.#requestInterceptors) {
       handler(config as ItIsFetchConfig);
+    }
+
+    const isFormDataBody = config.body && config.body instanceof FormData;
+
+    if (isFormDataBody) {
+      delete config.headers["Content-Type"];
     }
 
     // 序列化阶段
