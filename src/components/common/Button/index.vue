@@ -3,6 +3,7 @@
     class="btn"
     :class="{
       'btn--icon': props.icon,
+      'btn--block': props.block,
       [`btn--${props.variant ?? 'outlined'}`]: true,
     }"
   >
@@ -16,6 +17,7 @@ type T_ButtonVariants = "primary" | "outlined" | "ghot";
 
 interface I_ButtonProps {
   icon?: boolean;
+  block?: boolean;
   variant?: T_ButtonVariants;
 }
 
@@ -49,6 +51,10 @@ defineOptions({ name: "Button" });
   &--icon {
     padding: 4px;
     @include flexCenter;
+  }
+
+  &--block {
+    width: 100%;
   }
 
   &:active {
