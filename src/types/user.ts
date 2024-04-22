@@ -1,6 +1,14 @@
 export interface I_User {
   id: number;
-  username: string;
-  createTime: string;
+  role: 1 | 2;
   token: string;
+  email: string;
+  phone: string;
+  gender: "Male" | "Female" | "Other" | "Prefer not to say";
+  birthday: string;
+  biography: string;
+  firstname: string;
+  lastname: string;
+  createdAt: string;
+  updatedAt: string;
 }
