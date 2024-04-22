@@ -3,14 +3,14 @@
     <Logotyp class="logotyp" />
 
     <nav class="block">
-      <Button variant="primary" @click="modal.authModal.open = true">
+      <Button variant="primary" @click="goToPublish">
         <span>Опубликовать статя</span>
       </Button>
-      <Button v-if="!user.isAuthenticated" @click="openRegisterModal">
+      <Button v-if="!userStore.isAuthenticated" @click="openRegisterModal">
         <span>Бесплатная регистрация</span>
       </Button>
 
-      <Button v-if="user.isAuthenticated" @click="user.logout">
+      <Button v-if="userStore.isAuthenticated" @click="userStore.logout">
         <span>Выйти</span>
       </Button>
 
@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 // Store
-import { useUser, defaultUserState } from "~/stores/user";
+import { useUserStore } from "~/stores/user";
 import { useGlobalModal } from "~/stores/modal";
 // Component
 import Logotyp from "~/components/default_layout/Logotyp.vue";
@@ -30,8 +30,8 @@ import Button from "~/components/common/Button/index.vue";
 
 defineOptions({ name: "Navbar" });
 
-const user = useUser();
-const route = useRoute();
+const userStore = useUserStore();
+const router = useRouter();
 const modal = useGlobalModal();
 
 const openRegisterModal = () => {
@@ -41,6 +41,14 @@ const openRegisterModal = () => {
       modalType: "Register",
     },
   });
+};
+
+const goToPublish = () => {
+  if (userStore.isAuthenticated) {
+    return router.push("/publish");
+  }
+
+  openRegisterModal();
 };
 </script>
 
