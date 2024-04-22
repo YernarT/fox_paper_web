@@ -46,7 +46,7 @@
 // Vue
 import { onBeforeMount } from "vue";
 // Store
-import { useUser } from "@/stores/user";
+import { useUserStore } from "@/stores/user";
 // Antd
 import ru_RU from "ant-design-vue/locale/ru_RU";
 import { ConfigProvider } from "ant-design-vue";
@@ -56,8 +56,8 @@ defineOptions({ name: "App" });
 
 // 初始化 Store
 onBeforeMount(() => {
-  const user = useUser();
-  user.initUserFromLocal();
+  const userStore = useUserStore();
+  userStore.initUserFromLocal();
 });
 </script>
 
