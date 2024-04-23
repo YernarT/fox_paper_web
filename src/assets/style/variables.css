@@ -4,6 +4,9 @@
 
   /* 调色盘 */
   --c-primary: #1191ff;
+  --c-success: #389e0d;
+  --c-error: #ff4d4f;
+  --c-warning: #ffc53d;
   --c-border: rgba(0, 0, 0, 0.25);
   --c-background: rgba(255, 255, 255, 0.6);
 
