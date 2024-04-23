@@ -1,5 +1,5 @@
 // Types
-import type { I_User } from "~/types/user";
+import type { I_UserMe } from "~/types/user";
 
 // 大菠萝
 import { defineStore } from "pinia";
@@ -7,7 +7,7 @@ import { defineStore } from "pinia";
 // Utils
 import { localStorage } from "~/utils/localStorage";
 
-export const defaultUserState: I_User = {
+export const defaultUserState: I_UserMe = {
   id: 0,
   role: 1,
   token: "",
@@ -23,13 +23,16 @@ export const defaultUserState: I_User = {
 };
 
 export const useUserStore = defineStore("userStore", {
-  state: (): I_User => {
+  state: (): I_UserMe => {
     return defaultUserState;
   },
 
   actions: {
     initUserFromLocal() {
-      const user = localStorage.get<I_User, I_User>("user", defaultUserState);
+      const user = localStorage.get<I_UserMe, I_UserMe>(
+        "user",
+        defaultUserState
+      );
       this.$state = user;
     },
 
