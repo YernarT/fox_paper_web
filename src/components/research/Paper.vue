@@ -1,12 +1,12 @@
 <template>
   <div class="paper">
-    <h6 class="title">
+    <h6 class="title" @click="$router.push('/research/1')">
       jsPsych: A JavaScript library for creating behavioral experiments in a Web
       browser
     </h6>
 
     <div class="green-block">
-      <NuxtLink to="/user/:id">JR De Leeuw</NuxtLink>
+      <NuxtLink to="/user/1">JR De Leeuw</NuxtLink>
       (и 3 ассоц. автора), 2015.09.13
     </div>
 
