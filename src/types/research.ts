@@ -10,12 +10,11 @@ export interface I_Research {
   id: number;
   title: string;
   description: string;
-  status: "Submited" | "Under review" | "Rejected" | "Published";
-  isPublished: boolean;
+  status: "Submited" | "Under Review" | "Rejected" | "Published";
   file: string;
   createdAt: string;
   updatedAt: string;
-  publishedAt: string;
+  publishedAt: string | null;
   author: I_User;
   categories: I_Category[];
 }
