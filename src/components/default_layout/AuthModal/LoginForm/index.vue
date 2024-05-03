@@ -1,30 +1,50 @@
 <template>
-  <form class="form" @submit.prevent="handleSubmit">
-    <div class="row">
-      <div class="icon">
-        <Icon name="mdi:account" class="itisit-icon" />
-      </div>
-
-      <h3 class="title">Вход</h3>
-
-      <div class="closer" @click="modal.authModal.open = false">
-        <Icon name="mdi:window-close" />
-      </div>
+  <Form
+    :model="formState"
+    scrollToFirstError
+    autocomplete="off"
+    @finish="handleSubmit"
+  >
+    <div class="icon">
+      <Icon name="mdi:account" class="itisit-icon" />
     </div>
 
-    <div class="inputs">
-      <Input placeholder="Имя пользователя" />
-      <Input placeholder="Пароль" type="password" />
+    <h3 class="title">Вход</h3>
+
+    <div class="closer" @click="modal.authModal.open = false">
+      <Icon name="mdi:window-close" />
     </div>
+
+    <FormItem
+      name="email"
+      :rules="[{ required: true, message: 'Требуется E-mail' }]"
+    >
+      <Input
+        v-model:value="formState.email"
+        type="email"
+        placeholder="E-mail"
+      />
+    </FormItem>
+
+    <FormItem
+      name="password"
+      :rules="[{ required: true, message: 'Требуется пароль' }]"
+    >
+      <Input
+        v-model:value="formState.password"
+        placeholder="Пароль"
+        type="password"
+      />
+    </FormItem>
 
     <div class="actions">
       <Button type="submit" variant="primary">Вход</Button>
       <span>Или</span>
-      <Button @click="modal.authModal.modalType = 'Register'">
+      <Button type="button" @click="modal.authModal.modalType = 'Register'">
         Зарегистрируйтесь
       </Button>
     </div>
-  </form>
+  </Form>
 </template>
 
 <script setup lang="ts">
@@ -33,6 +53,7 @@ import { reactive } from "vue";
 // Component
 import Input from "~/components/common/Input/index.vue";
 import Button from "~/components/common/Button/index.vue";
+import { Form, FormItem } from "ant-design-vue";
 // Store
 import { useGlobalModal } from "~/stores/modal";
 
@@ -40,7 +61,7 @@ defineOptions({ name: "LoginForm" });
 
 const modal = useGlobalModal();
 const formState = reactive({
-  username: "",
+  email: "",
   password: "",
 });
 
@@ -52,11 +73,11 @@ const handleSubmit = () => {
 <style scoped lang="scss">
 @import "~/assets/style/mixins.scss";
 
-.form {
+.ant-form {
   @include flex($direction: column, $alignItems: center);
 
-  .row {
-    @include flex($alignItems: center, $gap: 12px);
+  .ant-form-item {
+    width: 100%;
   }
 
   .icon {
@@ -71,6 +92,7 @@ const handleSubmit = () => {
   .title {
     font-weight: 500;
     font-size: 20px;
+    margin-bottom: 8px;
   }
 
   .closer {
@@ -90,6 +112,7 @@ const handleSubmit = () => {
 
   .actions {
     width: 100%;
+    margin-top: 8px;
     @include flex($direction: column, $alignItems: center, $gap: 8px);
 
     button {
