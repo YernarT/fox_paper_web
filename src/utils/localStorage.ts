@@ -44,14 +44,12 @@ export const localStorage: localStorageProperties = {
       try {
         deserializedData = deserializer?.(data) ?? JSON.parse(data);
       } catch (error) {
-        console.error(`localStorage.get(${key}) 反序列化异常:\n${error}`);
         deserializedData = defaultValue;
       }
 
       return deserializedData;
     }
 
-    console.warn(`本地数据 ${key}\n不存在或版本不一致`);
     return defaultValue;
   },
 
